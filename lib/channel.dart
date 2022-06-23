@@ -25,20 +25,16 @@ class CnasApiChannel extends ApplicationChannel {
   /// This method is invoked after [prepare].
   @override
   Controller get entryPoint {
-    final router = Router();
+    final router = Router()
 
-    // Prefer to use `link` instead of `linkFunction`.
-    // See: https://aqueduct.io/docs/http/request_controller/
-    router.route("/example").linkFunction((request) async {
-      return Response.ok({"key": "value"});
-    });
+    ..route("/operateur/[:id]").link(() => OperateurController())
 
-    router.route("/operateur/[:id]").link(() => OperateurController());
+    //
+    ..route('/').linkFunction((request) =>
+    Response.ok('Hello, World!')..contentType = ContentType.html)
 
-    router.route('/').linkFunction((request) =>
-    Response.ok('Hello, World!')..contentType = ContentType.html);
-
-    router.route('/client').linkFunction((request) async {
+    //
+    ..route('/client').linkFunction((request) async {
       final client = await File('client.html').readAsString();
       return Response.ok(client)..contentType = ContentType.html;
     });
