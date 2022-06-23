@@ -1,0 +1,17 @@
+# Copyright (c) 2014, Google Inc. Please see the AUTHORS file for details.
+# All rights reserved. Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+install:
+  - choco install -y dart-sdk
+  - set PATH=%PATH%;C:\tools\dart-sdk\bin		
+  - set PATH=%PATH%;%APPDATA%\Pub\Cache\bin
+  - pub get
+
+build: off
+
+test_script:
+  - dartanalyzer --fatal-warnings example\list.dart lib\pub_cache.dart test\all.dart
+  # We need at least one activated application for our test suite.
+  - pub global activate dart_coveralls
+  - dart test\all.dart

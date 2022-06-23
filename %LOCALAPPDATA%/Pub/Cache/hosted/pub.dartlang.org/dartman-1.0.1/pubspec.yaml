@@ -1,0 +1,15 @@
+name: dartman
+author: Loïc Nestler <me@lcnr.io>
+version: 1.0.1
+homepage: https://github.com/loicnestler
+
+description: dartman will watch for changes in your projects root directory and restart your app everytime you edit something.
+environment:
+  sdk: '>=2.2.0 <3.0.0'
+
+dependencies:
+  ansicolor: ^1.0.2
+
+executables:
+  dartman: main
+  dm: main
