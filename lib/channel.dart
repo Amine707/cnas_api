@@ -6,6 +6,9 @@ import 'cnas_api.dart';
 /// Override methods in this class to set up routes and initialize services like
 /// database connections. See http://aqueduct.io/docs/http/channel/.
 class CnasApiChannel extends ApplicationChannel {
+
+  ManagedContext context;
+
   /// Initialize services in this method.
   ///
   /// Implement this method to initialize services, read values from [options]
@@ -15,6 +18,18 @@ class CnasApiChannel extends ApplicationChannel {
   @override
   Future prepare() async {
     logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
+
+    final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
+    final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
+      'gpcvngsjgkjqly',
+      '32dc82e05fb0f265979a63bd583d791be27b71b40a227a570dde7e1f36c726a2',
+      'ec2-35-169-173-9.compute-1.amazonaws.com',
+      5432,
+      'dckgqgkuc4aipi',
+       useSSL : true
+    );
+
+    context = ManagedContext(dataModel, persistentStore);
   }
 
   /// Construct the request channel.
@@ -27,7 +42,7 @@ class CnasApiChannel extends ApplicationChannel {
   Controller get entryPoint {
     final router = Router()
 
-    ..route("/operateur/[:id]").link(() => OperateurController())
+    ..route("/operateur/[:id]").link(() => OperateurController(context))
 
     //
     ..route('/').linkFunction((request) =>
