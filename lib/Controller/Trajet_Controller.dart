@@ -25,6 +25,38 @@ class TrajetController extends ResourceController {
     return Response.ok(trajet);
   }
 
+  @Operation.get()
+  Future<Response> getTrajetOrganise() async {
+    final trajetQuery = Query<Trajet>(context)
+      ..where((Trajet) => Trajet.type).equalTo(Type_trajet.organise);
+    final trajet = await trajetQuery.fetch();
+
+    if (trajet == null) {
+      return Response.notFound(body: 'Trajet non trouvé.');
+    }
+    return Response.ok(trajet.length);
+  }
+
+  @Operation.get('date')
+  Future<Response> getDistanceTrajets(@Bind.path('date') DateTime date) async {
+
+    var distanceTotal =0;
+
+    final trajetQuery = Query<Trajet>(context)
+      ..where((Trajet) => Trajet.date).equalTo(date);
+    final trajets = await trajetQuery.fetch();
+
+    if (trajets == null) {
+      return Response.notFound(body: 'Trajet non trouvé.');
+    }
+
+    for( final tr in trajets){
+      distanceTotal =  distanceTotal + int.parse(tr.distance);
+    }
+
+    return Response.ok(distanceTotal);
+  }
+
   @Operation.post()
   Future<Response> createNewTrajet(@Bind.body() Trajet body) async {
     final trajetQuery = Query<Trajet>(context)..values = body;
