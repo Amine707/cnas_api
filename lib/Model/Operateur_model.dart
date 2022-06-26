@@ -1,5 +1,12 @@
 import 'package:cnas_api/cnas_api.dart';
 
+import 'Client_model.dart';
+
+enum Type_vehicule {
+  leger,
+  lourd
+}
+
 class Operateur extends ManagedObject<_Operateur> implements _Operateur {
   String get detail => '$nom  $prenom';
 }
@@ -21,26 +28,13 @@ class _Operateur {
   String email;
 
   @ Column()
-  String date_naissance;
+  String adresse;
+
+  @ Column()
+  DateTime date_naissance;
+
+  @ Column()
+  String liste_vehicules;
+
+  ManagedSet<Client> clients;
 }
-
-/// For reference
-// class Read extends Serializable {
-//   String title;
-//   String author;
-//   int year;
-
-//   @override
-//   Map<String, dynamic> asMap() => {
-//         'title': title,
-//         'author': author,
-//         'year': year,
-//       };
-
-//   @override
-//   void readFromMap(Map<String, dynamic> requestBody) {
-//     title = requestBody['title'] as String;
-//     author = requestBody['author'] as String;
-//     year = requestBody['year'] as int;
-//   }
-// }

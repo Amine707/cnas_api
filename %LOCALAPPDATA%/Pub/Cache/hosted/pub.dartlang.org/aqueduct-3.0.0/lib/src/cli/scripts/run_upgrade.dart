@@ -78,7 +78,7 @@ class RunUpgradeExecutable extends Executable<Map<String, dynamic>> {
 
 class DBInfo {
   DBInfo(this.flavor, this.username, this.password, this.host, this.port,
-      this.databaseName, this.timeZone, {this.useSSL = false});
+      this.databaseName, this.timeZone, {this.useSSL = true});
 
   DBInfo.fromMap(Map<String, dynamic> map)
       : flavor = map["flavor"] as String,

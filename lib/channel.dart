@@ -21,12 +21,11 @@ class CnasApiChannel extends ApplicationChannel {
 
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-      'gpcvngsjgkjqly',
-      '32dc82e05fb0f265979a63bd583d791be27b71b40a227a570dde7e1f36c726a2',
-      'ec2-35-169-173-9.compute-1.amazonaws.com',
+      'hsvpmbkb',
+      'KMXRUFh7UOt2-RR1BS3nEuDM3S4xJYJ_',
+      'tyke.db.elephantsql.com',
       5432,
-      'dckgqgkuc4aipi',
-       useSSL : true
+      'hsvpmbkb'
     );
 
     context = ManagedContext(dataModel, persistentStore);
@@ -42,6 +41,7 @@ class CnasApiChannel extends ApplicationChannel {
   Controller get entryPoint {
     final router = Router()
 
+    //controllers list
     ..route("/operateur/[:id]").link(() => OperateurController(context))
 
     //

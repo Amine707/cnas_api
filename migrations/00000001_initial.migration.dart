@@ -1,62 +1,24 @@
 import 'dart:async';
-
 import 'package:aqueduct/aqueduct.dart';
 
 class Migration1 extends Migration {
   @override
   Future upgrade() async {
-     database.createTable(SchemaTable("_Operateur", [
-  SchemaColumn("id_op", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),
-  SchemaColumn("nom", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),
-  SchemaColumn("prenom", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),
-  SchemaColumn("tel", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),
-  SchemaColumn("email", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),
-  SchemaColumn("date_naissance", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),
-  ],
-  ));
-
-
+   		database.createTable(SchemaTable("_Operateur", [SchemaColumn("id_op", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("nom", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("prenom", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("tel", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("email", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("adresse", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("date_naissance", ManagedPropertyType.datetime, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("liste_vehicules", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false)]));
+		database.createTable(SchemaTable("_Administrateur", [SchemaColumn("id_admin", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("user_name", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("password", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("tel", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("email", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false)]));
+			database.createTable(SchemaTable("_Client", [SchemaColumn("id_client", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("nom", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("prenom", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("tel", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("date_naissance", ManagedPropertyType.datetime, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("adresse", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false)]));
+		database.createTable(SchemaTable("_Reclamation", [SchemaColumn("id_reclamation", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("date", ManagedPropertyType.datetime, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("sujet", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("contenu_reclamation", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false)]));
+		database.createTable(SchemaTable("_Trajet", [SchemaColumn("id_trajet", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("depart", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("fin", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("distance", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("date", ManagedPropertyType.datetime, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("vehicule", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("type", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false)]));
+		database.createTable(SchemaTable("_Remboursement", [SchemaColumn("id_remboursement", ManagedPropertyType.bigInteger, isPrimaryKey: true, autoincrement: true, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("date_depot", ManagedPropertyType.datetime, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("etat", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false),SchemaColumn("facture", ManagedPropertyType.string, isPrimaryKey: false, autoincrement: false, isIndexed: false, isNullable: false, isUnique: false)]));
+		database.addColumn("_Client", SchemaColumn.relationship("operateur", ManagedPropertyType.bigInteger, relatedTableName: "_Operateur", relatedColumnName: "id_op", rule: DeleteRule.nullify, isNullable: true, isUnique: false));
+		database.addColumn("_Reclamation", SchemaColumn.relationship("client", ManagedPropertyType.bigInteger, relatedTableName: "_Client", relatedColumnName: "id_client", rule: DeleteRule.nullify, isNullable: true, isUnique: false));
+		database.addColumn("_Trajet", SchemaColumn.relationship("client", ManagedPropertyType.bigInteger, relatedTableName: "_Client", relatedColumnName: "id_client", rule: DeleteRule.nullify, isNullable: true, isUnique: false));
+		database.addColumn("_Remboursement", SchemaColumn.relationship("trajet", ManagedPropertyType.bigInteger, relatedTableName: "_Trajet", relatedColumnName: "id_trajet", rule: DeleteRule.nullify, isNullable: true, isUnique: true));
   }
 
   @override
   Future downgrade() async {}
 
   @override
-  Future seed() async {
-    final List<Map> reads = [
-      {
-        'nom': 'hakim',
-        'prenom': 'Eric',
-        'tel': '09088',
-        'email': 'h@g.com',
-        'date_naissance': '06/2004'
-      },
-      {
-        'nom': 'massi',
-        'prenom': 'Eric',
-        'tel': '09088',
-        'email': 'h@g.com',
-        'date_naissance': '06/2004'
-      },
-      {
-        'nom': 'mobi',
-        'prenom': 'Eric',
-        'tel': '09088',
-        'email': 'h@g.com',
-        'date_naissance': '06/2004'
-      }
-    ];
-
-    for (final read in reads) {
-      await database.store.execute(
-          'INSERT INTO _Read (nom, prenom, tel, email, date_naissance) VALUES (@nom, @prenom, @tel, @email, @date_naissance)',
-          substitutionValues: {
-            'nom': read['nom'],
-            'prenom': read['prenom'],
-            'tel': read['tel'],
-            'email': read['email'],
-            'date_naissance': read['date_naissance'],
-          });
-    }
-  }
+  Future seed() async {}
 }
