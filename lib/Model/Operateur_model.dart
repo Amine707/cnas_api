@@ -22,6 +22,9 @@ class _Operateur {
   String prenom;
 
   @ Column()
+  String password;
+
+  @ Column()
   String tel;
 
   @ Column()

@@ -1,7 +1,5 @@
 import 'package:cnas_api/cnas_api.dart';
 
-import 'Operateur_model.dart';
-
 class Administrateur extends ManagedObject<_Administrateur> implements _Administrateur {
   String get detail => '$user_name  $password';
 }

@@ -1,3 +1,9 @@
+import 'package:cnas_api/Controller/Admin_controller.dart';
+import 'package:cnas_api/Controller/Client_Controller.dart';
+import 'package:cnas_api/Controller/Reclamation_Controller.dart';
+import 'package:cnas_api/Controller/Remboursement_Controller.dart';
+import 'package:cnas_api/Controller/Trajet_Controller.dart';
+
 import 'Controller/operateur_controller.dart';
 import 'cnas_api.dart';
 
@@ -43,13 +49,18 @@ class CnasApiChannel extends ApplicationChannel {
 
     //controllers list
     ..route("/operateur/[:id]").link(() => OperateurController(context))
+    ..route("/admin/[:id]").link(() => AdministrateurController(context))
+    ..route("/client/[:id]").link(() => ClientController(context))
+    ..route("/reclamation/[:id]").link(() => ReclamationController(context))
+    ..route("/remboursement/[:id]").link(() => RemboursementController(context))
+    ..route("/trajet/[:id]").link(() => TrajetController(context))
 
     //
     ..route('/').linkFunction((request) =>
     Response.ok('Hello, World!')..contentType = ContentType.html)
 
     //
-    ..route('/client').linkFunction((request) async {
+    ..route('/client_doc').linkFunction((request) async {
       final client = await File('client.html').readAsString();
       return Response.ok(client)..contentType = ContentType.html;
     });
