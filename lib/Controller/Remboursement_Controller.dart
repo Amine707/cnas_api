@@ -25,24 +25,18 @@ class RemboursementController extends ResourceController {
     return Response.ok(rem);
   }
 
-  @Operation.get()
-  Future<Response> getRemboursementAccepte() async {
-    final remQuery = Query<Remboursement>(context)
-      ..where((Remboursement) => Remboursement.etat).equalTo(Etat.accepte);
-    final rem = await remQuery.fetch();
-
-    if (rem == null) {
-      return Response.notFound(body: 'Remboursement non trouvé.');
+  @Operation.get('etat')
+  Future<Response> getRemboursementEtat(@Bind.path('etat') String etat) async {
+    var rem;
+    if(etat==Etat.accepte.toString()){
+      final remQuery = Query<Remboursement>(context)
+        ..where((Remboursement) => Remboursement.etat).equalTo(Etat.accepte);
+      rem = await remQuery.fetch();
+    }else{
+      final remQuery = Query<Remboursement>(context)
+        ..where((Remboursement) => Remboursement.etat).equalTo(Etat.refuse);
+      rem = await remQuery.fetch();
     }
-    return Response.ok(rem.length);
-  }
-
-  @Operation.get()
-  Future<Response> getRemboursementRefuse() async {
-    final remQuery = Query<Remboursement>(context)
-      ..where((Remboursement) => Remboursement.etat).equalTo(Etat.refuse);
-    final rem = await remQuery.fetch();
-
     if (rem == null) {
       return Response.notFound(body: 'Remboursement non trouvé.');
     }

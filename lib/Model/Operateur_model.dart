@@ -1,3 +1,4 @@
+import 'package:cnas_api/Model/MobileTrajet_model.dart';
 import 'package:cnas_api/cnas_api.dart';
 
 import 'Client_model.dart';
@@ -40,4 +41,6 @@ class _Operateur {
   String liste_vehicules;
 
   ManagedSet<Client> clients;
+
+  ManagedSet<MobileTrajet> trajetsMobiles;
 }

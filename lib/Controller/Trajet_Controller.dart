@@ -25,10 +25,10 @@ class TrajetController extends ResourceController {
     return Response.ok(trajet);
   }
 
-  @Operation.get()
-  Future<Response> getTrajetOrganise() async {
+  @Operation.get('type_trajet')
+  Future<Response> getTrajetType(@Bind.path('type_trajet') String type_trajet) async {
     final trajetQuery = Query<Trajet>(context)
-      ..where((Trajet) => Trajet.type).equalTo(Type_trajet.organise);
+      ..where((Trajet) => Trajet.type.toString()).equalTo(type_trajet);
     final trajet = await trajetQuery.fetch();
 
     if (trajet == null) {
